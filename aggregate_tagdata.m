@@ -1,8 +1,7 @@
-% Aggregate CATS and TDR10 tag data for call and feeding lunge analyses
+%% Aggregate CATS and TDR10 tag data for call and feeding lunge analyses
+% Last update: May 18, 2020
 
-% This is the approach of choice as of Jan 21, 2020 (WKO)
-
-% Aggregating across all deployments within each year to avoid the issue of
+% Aggregates across all deployments within each year to avoid the issue of
 % very small windows in certain temporal bins (i.e. night) when there are
 % CATS deployments that come off early in the night, or before night.
 
@@ -10,13 +9,17 @@ clear all
 
 %% 2017
 CATSdepl = dir(['tag_data/CATS/','*17*']);
+
+% arrays for calls, lunges, and total hours
 taghrs = [0,0,0];
 calls = [0,0,0];
 lunges = [0,0,0];
 
+% cycle through list of all CATS deployments in 2017 w/ calls (A and/or B) and
+% lunges 
 for f=1:length(CATSdepl)
     disp([num2str(f),'/',num2str(length(CATSdepl))])
-    %load in PRH, lunge files
+
     load(['tag_data/CATS/',CATSdepl(f).name,'/',CATSdepl(f).name,'_taginfo.mat'],'DN','tagon','GPS');
     load(['tag_data/CATS/',CATSdepl(f).name,'/',CATSdepl(f).name,'lunges.mat'],'LungeI');
     
@@ -78,7 +81,7 @@ totallunges = nansum(lunges);
 depls = 4;
 
 %save
-save('CATS_TDR_diel_2017.mat','callrate','lungerate','totalhrs','totalcalls','totallunges','depls')
+save('tag_data/CATS_TDR_diel_2017.mat','callrate','lungerate','totalhrs','totalcalls','totallunges','depls')
 
 %% 2018
 CATSdepl = dir(['tag_data/CATS/','*18*']);
@@ -86,9 +89,11 @@ taghrs = [0,0,0];
 calls = [0,0,0];
 lunges = [0,0,0];
 
+% cycle through list of all CATS deployments in 2018 w/ calls (A and/or B) and
+% lunges 
 for f=1:length(CATSdepl)
     disp([num2str(f),'/',num2str(length(CATSdepl))])
-    %load in PRH, lunge files
+
     load(['tag_data/CATS/',CATSdepl(f).name,'/',CATSdepl(f).name,' 10Hzprh.mat'],'DN','tagon','GPS');
     load(['tag_data/CATS/',CATSdepl(f).name,'/',CATSdepl(f).name,'lunges.mat'],'LungeI','LungeC');
     
@@ -224,9 +229,11 @@ taghrs = [0,0,0];
 calls = [0,0,0];
 lunges = [0,0,0];
 
+% cycle through list of all CATS deployments in 2019 w/ calls (A and/or B) and
+% lunges 
 for f=1:length(CATSdepl)
     disp([num2str(f),'/',num2str(length(CATSdepl))])
-    %load in PRH, lunge files
+    
     load(['tag_data/CATS/',CATSdepl(f).name,'/',CATSdepl(f).name,' 10Hzprh.mat'],'DN','tagon','GPS');
     load(['tag_data/CATS/',CATSdepl(f).name,'/',CATSdepl(f).name,'lunges.mat'],'LungeI','LungeC');
     
