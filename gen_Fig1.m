@@ -1,13 +1,24 @@
-% Generate Figure 1 (example blue whale song (panel A) with spectrum 
-% statistics, CI calculation frequenices, and reference map (panel B)
-% Last update: May 17, 2020
+%% Generate Figure 1 
+% Panel a: example blue whale song 
+% Panel b: spectral statistics, CI calculation frequenices, and reference
+% map
+% Last update: May 18, 2020
 
 clear all; close all;
-load 'acoustic_data/bluewhalesong_ltsa_20161101h1.mat'; load 'acoustic_data/bluewhalesong_xl.mat'; load 'acoustic_data/AugDecPercentiles.mat';
+
+% example blue whale song
+load 'acoustic_data/bluewhalesong_ltsa_20161101h1.mat'; 
+load 'acoustic_data/bluewhalesong_xl.mat'; 
+
+% Aug-Dec (peak blue whale song season) 50th and 90th percentils
+load 'acoustic_data/AugDecPercentiles.mat';
+
+% land areas for map
 landareas = shaperead('landareas.shp','UseGeoCoords',true);
 load 'acoustic_data/MARS_hydrophone_location.mat'
 gry = .7+[0 0 0]; dg = .5+[0 0 0];
 
+% set up figure and positioning
 figure(1); clf; 
 set(gcf,'position',[200 200 650 350],'color','w');
 fs = 11;
@@ -26,7 +37,6 @@ axes('position',P1);
 fidx = find(L.freq >= fr(1) & L.freq < fr(2));
 tidx = find(L.dn >= xl(1) & L.dn <= xl(2));
 wtime = [L.time(tidx) - min(L.time(tidx))]/60; 
-% pcolor(wtime,(L.freq(fidx)),L.ltsa(fidx,tidx)); shading flat;
 [cc,h] = contourf(wtime,(L.freq(fidx)),L.ltsa(fidx,tidx),clevs); set(h(:),'edgecolor','none'); 
 axis tight; caxis(cax); ylabel('Frequency (Hz)'); xlabel('Time (minutes)');
 set(gca,'Ylim',yl,'Xlim',[0 max(wtime)+1.25],'color',[.7 .7 .7],'fontsize',fs,'box','off');
@@ -34,7 +44,6 @@ uf = [10.5 14.5+[0:4]*14.5 81]; un = {'C','B','B_2','B_3','B_4','B_5','A'};
 for u = 1:numel(uf);
     text(max(wtime)+.15,uf(u),un{u},'fontsize',11); 
 end
-
 frameax;
 cb = linspace(cax(1),cax(2),100);
 axes('position',cbp);
@@ -50,12 +59,14 @@ plot(Q.pctile50(fidx),Q.freq(fidx),'k','linewidth',1);
 axis tight; 
 set(gca,'Xlim',[70 100])
 hold on;
+
 % algorithm frequencies
 cif.blue = [37 43 44 50]; axl = get(gca,'Xlim');
 for F = 1:numel(cif.blue);
     [x,ia,ib] = intersect(cif.blue(F),Q.freq);
     plot([Q.pctile50(ib)+.2 axl(2)],cif.blue(F)+[0 0],'k','color',dg);
 end
+
 set(gca,'Ylim',yl,'box','off','Ytick',[],'fontsize',fs,'Tickdir','out');
 frameax
 axes('position',P2);

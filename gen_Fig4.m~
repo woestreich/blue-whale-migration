@@ -1,33 +1,34 @@
-% Generate Figure 4:
-
-
+%% Generate Figure 4
+% Panel a: TDR10 deployment latitude + inset map of animal track
+% Panel b: Daily-binned feeding lunge rate by solar elevation category
+% Panel c: Daily-binned night-minus-day call rate
 
 clear all; close all; 
+
+% West coast for inset map
 thiscoast = shaperead('thiscoast', 'UseGeoCoords', true);
 
-% load in and process TDR10 deployment data
-% load in deployment
+% TDR10 deployment
 d = 'Bm181021-TDR11';
 
-%load prh DN and p
-load([d,'/',d,' 8Hzprh.mat'],'DN','p')
+% Load lunge file and call file
+load(['tag_data/TDR10/',d,'/',d,' lunges.mat']);
+load(['tag_data/TDR10/',d,'/',d,'_32HzAcc_calls.mat']);
 
-%load lunge file and call file
-load([d,'/',d,' lunges.mat']);
-load([d,'/',d,'_32HzAcc_calls.mat']);
-
-%subset to only 3-level confidence lunges (for sure lunges)
+% Subset to only 3-level confidence lunges (highest confidence)
 LungeDN = LungeDN(LungeC == 3);
 
-% get gps fixes and days
-gps = xlsread([d,'/',d,' GPS.xlsx']);
+% Get gps fixes and days
+gps = xlsread(['tag_data/TDR10/',d,'/',d,' GPS.xlsx']);
 gpsdv = datevec(gps(:,6));
 gpsdays = datenum([gpsdv(:,1),gpsdv(:,2),gpsdv(:,3)]);
-days = starttime:1:DN(end);
+days = starttime:1:datenum('22 Nov 2018');
 daysdv = datevec(days);
 days = datenum([daysdv(:,1),daysdv(:,2),daysdv(:,3)]);
 days = days(2:end-1);
 
+% Calculate daily values for lunges and calls per hour by solar elevation
+% category
 for i=1:length(days)
     idxg = find(gpsdays==days(i),1);
     lat = gps(idxg,2);
@@ -54,8 +55,10 @@ for i=1:length(days)
     calls_tot(i) = length(calls);
 end
 
-%calculate calls per hour for each solar category, only for days following
-%final lunge (migratory period)
+% Calculate calls per hour for each solar category, only for days following
+% final lunge (migratory period)
+
+% Behavioral transition date
 fdate = datenum('01-Nov-2018 0:00:00');
 daymins = 0; nightmins = 0; ddmins = 0;
 for i=fdate:1:days(end)
@@ -79,6 +82,8 @@ calls_migration = callDN(callDN >= fdate);
 calls_forage = callDN(callDN < fdate);
 [~,call_el_migr] = SolarAzEl(calls_migration+(7/24),36,-121,0);
 [~,call_el_for] = SolarAzEl(calls_forage+(7/24),36,-121,0);
+
+% Un-suppressed output
 callsperhr_day_migr = sum(call_el_migr>0)/(daymins/60)
 callsperhr_night_migr = sum(call_el_migr<=-12)/(nightmins/60)
 callsperhr_dd_migr = sum(call_el_migr<=0 & call_el_migr>-12)/(ddmins/60) 

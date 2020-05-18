@@ -12,6 +12,9 @@ function ci = call_index(L);
 % * noise from the mean of separate 1 Hz bands in the quiet background
 %
 % Output: structured array with index values
+%
+% Written by John Ryan; MBARI. 
+% Last update: May 18, 2020
 
 % algorithm specification: methods and frequencies
 cif.blue = [37 43 44 50]; cif.fin = [12 20 21 34]; 
