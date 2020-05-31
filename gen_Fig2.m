@@ -41,7 +41,7 @@ RL = load('acoustic_data/RL_Sc01_November.mat');
 thiscoast = shaperead('thiscoast', 'UseGeoCoords', true);
 
 % MARS hydrophone location
-load MARS_hydrophone_location; MARS.hlat = hloc.lat; MARS.hlon = hloc.lon;
+load acoustic_data/MARS_hydrophone_location; MARS.hlat = hloc.lat; MARS.hlon = hloc.lon;
 E = referenceEllipsoid('wgs84');
 dbars = [33.8 -125.5]; dbardist = 100000;
 [latout,lonout] = reckon(dbars(1),dbars(2),dbardist,90,E);
@@ -113,6 +113,6 @@ frameax;
 
 % axes positioning and panel labels
 axes('position',[0 0 1 1]); set(gca,'visible','off');
-text(.02,.94,'a','fontsize',12,'fontweight','bold');
-text(.425,.93,'b','fontsize',12,'fontweight','bold');
-text(.425,.36,'c','fontsize',12,'fontweight','bold');
+text(.02,.94,'A','fontsize',12,'fontweight','bold');
+text(.425,.93,'B','fontsize',12,'fontweight','bold');
+text(.425,.36,'C','fontsize',12,'fontweight','bold');

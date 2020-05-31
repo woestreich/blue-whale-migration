@@ -86,7 +86,7 @@ lx = 1130; ly = 560;
 plot(lx,ly,'w^','markersize',8,'markerfacecolor','w');
 plot(lx+[0 0],ly+[0 100],'w','linewidth',2);
 text(lx,ly+140,'CATS tag','fontsize',12,'fontweight','bold','color','w','Horizontalalignment','center');
-text(-250,25,'a','fontsize',12,'fontweight','bold');
+text(-250,25,'A','fontsize',12,'fontweight','bold');
 
 % Panel b
 axes('position',Bpos);
@@ -111,7 +111,7 @@ set(gca, 'Layer', 'top')
 datetick('x','mm/dd HH:MM','keeplimits','keepticks')
 ylabel('Depth (m)')
 xlabel('Local time')
-text(DN(1)-0.08,10,'b','Fontsize',12,'fontweight','bold')
+text(DN(1)-0.08,10,'B','Fontsize',12,'fontweight','bold')
 axis tight
 box on
 ylim([-99,15])
@@ -140,7 +140,7 @@ set(gca, 'XTick', [1 2 3], 'XLim', [.5 3.5], 'YLim', [0 12])
 set(gca, 'XTickLabel', {'2017' '2018' '2019'})
 set(gca, 'Fontsize', fs)
 ylabel({'Song call rate' ; '(A + B calls hour^{-1})'})
-text(-0.1,12.5,'c','Fontsize',12,'fontweight','bold')
+text(-0.1,12.5,'C','Fontsize',12,'fontweight','bold')
 % Custom legend to fit in a smaller space
 lx = 2.65; ly = 11.1; dy = 1.25;
 hold on;
@@ -158,5 +158,5 @@ set(p2(1),'FaceColor','w'); set(p2(2),'FaceColor',[.4 .4 .4]); set(p2(3),'FaceCo
 set(gca, 'XTick', [1 2 3], 'XLim', [0.5 3.5], 'YLim', [0 22])
 set(gca, 'XTickLabel', {'2017' '2018' '2019'})
 set(gca, 'Fontsize', fs)
-ylabel({'Lunge rate' ; '(lunges hour^{-1})'})
-text(-0.1,23,'d','Fontsize',12,'fontweight','bold')
+ylabel({'Feeding rate' ; '(lunges hour^{-1})'})
+text(-0.1,23,'D','Fontsize',12,'fontweight','bold')

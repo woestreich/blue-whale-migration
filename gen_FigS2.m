@@ -87,11 +87,17 @@ calls_forage = callDN(callDN < fdate);
 % Calculate migratory ("migr") and foraging ("for") call rates
 % for each solar elevation category. 
 callsperhr_day_migr = sum(call_el_migr>0)/(daymins/60);
+disp(['Calls/hr day (migratory) = ',num2str(callsperhr_day_migr)])
 callsperhr_night_migr = sum(call_el_migr<=-12)/(nightmins/60);
+disp(['Calls/hr night (migratory) = ',num2str(callsperhr_night_migr)])
 callsperhr_dd_migr = sum(call_el_migr<=0 & call_el_migr>-12)/(ddmins/60); 
+disp(['Calls/hr dusk/dawn (migratory) = ',num2str(callsperhr_dd_migr)])
 callsperhr_day_for = sum(call_el_for>0)/(daymins2/60);
+disp(['Calls/hr day (foraging) = ',num2str(callsperhr_day_for)])
 callsperhr_night_for = sum(call_el_for<=-12)/(nightmins2/60);
-callsperhr_dd_for = sum(call_el_for<=0 & call_el_for>-12)/(ddmins2/60);
+disp(['Calls/hr night (foraging) = ',num2str(callsperhr_night_for)])
+callsperhr_dd_for = sum(call_el_for<=0 & call_el_for>-12)/(ddmins2/60); 
+disp(['Calls/hr dusk/dawn (foraging) = ',num2str(callsperhr_dd_for)])
 
 % Figure position
 figure(1); clf; set(gcf,'position',[200 200 600 500],'color','w');
@@ -124,7 +130,7 @@ yticks([33,35,37])
 set(gca,'Fontsize',12,'XTick',XT,'XTickLabel',[],'TickDir','Out','box','off','color','none');
 yl = get(gca,'Ylim'); plot(ktime+[0 0],yl,'k--');
 frameax
-text(-0.1,0.96,'a','Fontsize',12,'fontweight','bold')
+text(-0.1,0.96,'A','Fontsize',12,'fontweight','bold')
 
 % Panel b
 axes('position',P2);
@@ -146,7 +152,7 @@ set(gca,'Xtick',days(1)-0.5:1:days(end)+0.5)
 legend('Night','Dusk/Dawn','Day')
 set(gca,'Fontsize',12,'XTick',XT,'XTickLabel',[],'TickDir','Out','box','off','color','none');
 frameax
-text(-0.1,0.96,'b','Fontsize',12,'fontweight','bold')
+text(-0.1,0.96,'B','Fontsize',12,'fontweight','bold')
 
 % Panel c
 axes('position',P3);
@@ -179,7 +185,7 @@ xlim([datenum('16-Sep-2019'),datenum('5-Oct-2019')]);
 yl = get(gca,'Ylim'); plot(ktime+[0 0],yl,'k--');
 frameax
 tl = get(gca,'Ticklength'); set(gca,'Ticklength',tl*2);
-text(-0.1,0.96,'c','Fontsize',12,'fontweight','bold')
+text(-0.1,0.96,'C','Fontsize',12,'fontweight','bold')
 
 hold on;
 
