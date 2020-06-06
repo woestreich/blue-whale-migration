@@ -26,7 +26,6 @@ gpsdays = datenum([gpsdv(:,1),gpsdv(:,2),gpsdv(:,3)]);
 days = starttime:1:datenum('22 Nov 2018');
 daysdv = datevec(days);
 days = datenum([daysdv(:,1),daysdv(:,2),daysdv(:,3)]);
-days = days(2:end-1);
 
 % Calculate daily values for lunges and calls per hour by solar elevation
 % category
@@ -56,8 +55,8 @@ for i=1:length(days)
     calls_tot(i) = length(calls);
 end
 
-% Calculate calls per hour for each solar category, only for days following
-% final lunge (migratory period)
+% Calculate calls per hour for each solar category, only for days in 
+% migratory period
 
 % Behavioral transition date
 fdate = datenum('01-Nov-2018 0:00:00');
@@ -118,9 +117,9 @@ fs = 12; set(0,'DefaultAxesFontSize',fs,'DefaultTextFontsize',fs);
 lg = [.7 .7 .7]; dg = [.45 .45 .45];
 
 % X ticks
-days = [days(1)-1;days]+0.5; 
-XT = [days; max(days)+1]-.5;
-ktime = days(11)+0.5;
+days = [days(1)-1;days]+0.5;
+XT = [days(2:end); max(days)+1]-.5;
+ktime = days(12)+0.5;
 
 % Panel a
 axes('position',P1);

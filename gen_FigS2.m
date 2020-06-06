@@ -26,7 +26,6 @@ gpsdays = datenum([gpsdv(:,1),gpsdv(:,2),gpsdv(:,3)]);
 days = starttime:1:datenum('4 Oct 2019');
 daysdv = datevec(days);
 days = datenum([daysdv(:,1),daysdv(:,2),daysdv(:,3)]);
-days = days(2:end-1);
 
 % Calculate daily values for lunges and calls per hour by solar elevation
 % category
@@ -116,9 +115,9 @@ fs = 12; set(0,'DefaultAxesFontSize',fs,'DefaultTextFontsize',fs);
 lg = [.7 .7 .7]; dg = [.45 .45 .45];
 
 % X ticks
-days = [days(1)-1;days]+0.5; 
-XT = [days; max(days)+1]-.5;
-ktime = days(8)+0.5;
+days = [days(1)-1;days]+0.5;
+XT = [days(2:end); max(days)+1]-.5;
+ktime = days(9)+0.5;
 
 % Panel a
 axes('position',P1);

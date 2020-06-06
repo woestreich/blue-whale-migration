@@ -26,7 +26,6 @@ gpsdays = datenum([gpsdv(:,1),gpsdv(:,2),gpsdv(:,3)]);
 days = starttime:1:datenum('22 Nov 2018');
 daysdv = datevec(days);
 days = datenum([daysdv(:,1),daysdv(:,2),daysdv(:,3)]);
-days = days(2:end-1);
 
 % Calculate daily values for lunges and calls per hour by solar elevation
 % category
@@ -56,8 +55,8 @@ for i=1:length(days)
     calls_tot(i) = length(calls);
 end
 
-% Calculate calls per hour for each solar category, only for days following
-% final lunge (migratory period)
+% Calculate calls per hour for each solar category, only for days in 
+% migratory period
 
 % Behavioral transition date
 fdate = datenum('01-Nov-2018 0:00:00');
@@ -88,15 +87,15 @@ calls_forage = callDN(callDN < fdate);
 % for each solar elevation category. Reported in Results section of
 % manuscript.
 callsperhr_day_migr = sum(call_el_migr>0)/(daymins/60);
-disp(['Calls/hr day (migratory) = ',callsperhr_day_migr])
+disp(['Calls/hr day (migratory) = ',num2str(callsperhr_day_migr)])
 callsperhr_night_migr = sum(call_el_migr<=-12)/(nightmins/60);
-disp(['Calls/hr night (migratory) = ',callsperhr_night_migr])
+disp(['Calls/hr night (migratory) = ',num2str(callsperhr_night_migr)])
 callsperhr_dd_migr = sum(call_el_migr<=0 & call_el_migr>-12)/(ddmins/60); 
-disp(['Calls/hr dusk/dawn (migratory) = ',callsperhr_dd_migr])
+disp(['Calls/hr dusk/dawn (migratory) = ',num2str(callsperhr_dd_migr)])
 callsperhr_day_for = sum(call_el_for>0)/(daymins2/60);
-disp(['Calls/hr day (foraging) = ',callsperhr_day_for])
+disp(['Calls/hr day (foraging) = ',num2str(callsperhr_day_for)])
 callsperhr_night_for = sum(call_el_for<=-12)/(nightmins2/60);
-disp(['Calls/hr night (foraging) = ',callsperhr_night_for])
+disp(['Calls/hr night (foraging) = ',num2str(callsperhr_night_for)])
 callsperhr_dd_for = sum(call_el_for<=0 & call_el_for>-12)/(ddmins2/60); 
 disp(['Calls/hr dusk/dawn (foraging) = ',num2str(callsperhr_dd_for)])
 
@@ -118,9 +117,9 @@ fs = 12; set(0,'DefaultAxesFontSize',fs,'DefaultTextFontsize',fs);
 lg = [.7 .7 .7]; dg = [.45 .45 .45];
 
 % X ticks
-days = [days(1)-1;days]+0.5; 
-XT = [days; max(days)+1]-.5;
-ktime = days(11)+0.5;
+days = [days(1)-1;days]+0.5;
+XT = [days(2:end); max(days)+1]-.5;
+ktime = days(12)+0.5;
 
 % Panel a
 axes('position',P1);
@@ -204,3 +203,5 @@ framem; gridm; axis off
 % Axis positioning and month labels on x axis
 axes('position',[0 0 1 1]); set(gca,'visible','off');
 text(.23,.04,'October','fontsize',12); text(.645,.04,'November','fontsize',12)
+
+%% exploring dx/dt
