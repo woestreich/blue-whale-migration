@@ -5,15 +5,15 @@
 %
 % Panel C: average annual cycle of CI night:day ratio
 %
-% First section (Lines X-Y) calculates CI, CI ratio, and quartiles + 
+% First section (Lines 20-181) calculates CI, CI ratio, and quartiles + 
 % percentiles for presentation in panels B and C. This section also
 % generates 4 exploratory figures for CI and CI ratio.
 %
-% Second section (Lines X-Y) saves a csv to pass to R (where we conduct 
+% Second section (Lines 182-186) saves a csv to pass to R (where we conduct 
 % 2-sided t-tests to test for month-to-month significant changes in CI and
 % CI ratio (also presented on panels B and C).
 %
-% Third (final) section (Lines X-Y) creates 3-panel figure
+% Third (final) section (Lines 187-311) creates 3-panel figure
 %
 % Last update: August 30, 2020
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

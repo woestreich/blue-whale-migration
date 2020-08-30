@@ -7,23 +7,23 @@
 % (circles), and daily number of song calls (triangles). Circles and
 % triangles are colored by lunges or calls per hr (night - day).
 %
-% First section (Lines X-Y) analyzes feeding, vocalizing, and movement 
+% First section (Lines 30-147) analyzes feeding, vocalizing, and movement 
 % behavior from 2018 TDR10 deployment that recorded the transition from 
 % foraging to migration (Bm181021-TDR11).
 %
-% Second section (Lines X-Y) saves a csv to pass to R for statistical 
+% Second section (Lines 148-153) saves a csv to pass to R for statistical 
 % analysis of the 2018 individual's behavior before and after the 
 % transition to migration.
 %
-% Third section (Lines X-Y) analyzes feeding, vocalizing, and movement 
+% Third section (Lines 154-267) analyzes feeding, vocalizing, and movement 
 % behavior from 2019 TDR10 deployment that recorded the transition from 
 % foraging to migration (Bm190916-TDR14).
 %
-% Fourth section (Lines X-Y) saves a csv to pass to R for statistical 
+% Fourth section (Lines 268-274) saves a csv to pass to R for statistical 
 % analysis of the 2019 individual's behavior before and after the 
 % transition to migration.
 %
-% Fifth section creates main text Figure 4 (panels described above)
+% Fifth section (Lines 275-410) creates main text Figure 4 
 %
 % Last update: August 30, 2020
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
