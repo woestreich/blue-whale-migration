@@ -1,8 +1,11 @@
 %% Generate Figure 1 
-% Panel a: example blue whale song 
-% Panel b: spectral statistics, CI calculation frequenices, and reference
+% Panel A: example blue whale song 
+%
+% Panel B: spectral statistics, CI calculation frequenices, and reference
 % map
-% Last update: May 18, 2020
+%
+% Last update: August 30, 2020
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 clear all; close all;
 
