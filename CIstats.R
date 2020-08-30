@@ -21,30 +21,12 @@ for (M in 1:12) {
   # first, compare CI
   s1 <- ci_daily$CI[k1]
   s2 <- ci_daily$CI[k2]
-  # remove extreme outliers
-  # q1 <- quantile(s1, na.rm = TRUE)
-  # iqr1 <- IQR(s1, na.rm = TRUE)
-  # s1e <- subset(s1, s1 > (q1[2] - 1.5*iqr1) & s1 < (q1[4] +1.5*iqr1))
-  # s2 <- ci_daily$DCI[k2]
-  # q2 <- quantile(s2, na.rm = TRUE)
-  # iqr2 <- IQR(s2, na.rm = TRUE)
-  # s2e <- subset(s2, s2 > (q2[2] - 1.5*iqr2) & s2 < (q2[4] +1.5*iqr2))
-  # run t-test
   res <- t.test(s1,s2,alternative = "two.sided", var.equal = FALSE)
   ci_sig$pv[M] <- res$p.value
   
-  # now compare delta_CI
+  # now compare CI ratio
   s1 <- ci_daily$DCI[k1]
   s2 <- ci_daily$DCI[k2]
-  # remove extreme outliers
-  # q1 <- quantile(s1, na.rm = TRUE)
-  # iqr1 <- IQR(s1, na.rm = TRUE)
-  # s1e <- subset(s1, s1 > (q1[2] - 1.5*iqr1) & s1 < (q1[4] +1.5*iqr1))
-  # s2 <- ci_daily$DCI[k2]
-  # q2 <- quantile(s2, na.rm = TRUE)
-  # iqr2 <- IQR(s2, na.rm = TRUE)
-  # s2e <- subset(s2, s2 > (q2[2] - 1.5*iqr2) & s2 < (q2[4] +1.5*iqr2))
-  #run t-test
   res <- t.test(s1,s2,alternative = "two.sided", var.equal = FALSE)
   dci_sig$pv[M] <- res$p.value  
 }
