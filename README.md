@@ -12,7 +12,7 @@ The repository is organized as follows:
   * daily power spectral density from MBARI's MARS hydrophone 
   * Aug - Dec (peak blue whale song seasong) 50th and 90th percentile daily mean spectrum levels
   * modeled received level results for the MARS hydrophone (modeled as in Collins, M. D. A split-step Pade solution for the parabolic equation method. J. Acoust. Soc. Am. 93, 1736-1742 (1993). 
-  * .mat file containing ~30 minutes of MARS data with a prominent example blue whale song
+  * .mat file containing ~30 minutes of MARS data (LTSA) with a prominent example blue whale song (bluewhalesong_ltsa_20161101h1.mat)
   * .mat file containing geographic location of the MARS hydrophone
   
 *Full acoustic dataset from the MARS hydrophone (Aug 2015 - present) is in the process of being organized, staged, and uploaded to a public repository through a collaboration between the Monterey Bay Aquarium Research Institute (MBARI) and Amazon Web Services (AWS). Acoustic data necessary for the full analysis of blue whale song in the present paper is provided here.*
